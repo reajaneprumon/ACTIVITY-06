@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Math jQuery</title>
+
+    <!-- jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <div>
+        <label>First Number:</label>
+        <input type="number" id="num1">
+
+        <select id="op">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="/">/</option>
+            <option value="*">*</option>
+        </select>
+
+        <label>Second Number:</label>
+        <input type="number" id="num2">
+
+        <button id="solve">Solve</button>
+
+        <!-- Hidden at first -->
+        <p id="result" style="display:none;"></p>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+
+            $("#solve").click(function(){
+
+                let num1 = parseFloat($("#num1").val());
+                let num2 = parseFloat($("#num2").val());
+                let op = $("#op").val();
+                let total;
+
+                if(isNaN(num1) || isNaN(num2)){
+                    alert("Both numbers are required!");
+                    return;
+                }
+
+                switch(op){
+                    case '+': total = num1 + num2; break;
+                    case '-': total = num1 - num2; break;
+                    case '*': total = num1 * num2; break;
+                    case '/':
+                        total = (num2 === 0) 
+                            ? "Cannot divide by zero"
+                            : num1 / num2;
+                    break;
+                }
+
+                $("#result")
+                    .text("Result: " + total)
+                    .show();   // show only after clicking
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>
